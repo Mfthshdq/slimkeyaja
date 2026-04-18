@@ -1,0 +1,122 @@
+.container {
+    padding: 6rem 0;
+    background-color: white;
+}
+
+.parent {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.header {
+    max-width: 42rem;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 600;
+    color: #c23f00;
+}
+
+.title {
+    margin-top: 1rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #190f0b;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.grid {
+    margin-top: 4rem;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+.card {
+    position: relative;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: white;
+    border: 1px solid #eae3df;
+    box-shadow: 0 8px 30px -12px color-mix(in oklab, #190f0b 18%, transparent);
+    transition: transform 0.5s ease, border-color 0.5s ease;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: color-mix(in oklab, #c23f00 40%, transparent);
+}
+
+.iconWrap {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.75rem;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .iconWrap {
+    transform: scale(1.1) rotate(6deg);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #190f0b;
+    margin-bottom: 0.5rem;
+}
+
+.cardDesc {
+    font-size: 0.875rem;
+    color: #6e605b;
+    line-height: 1.6;
+}
+
+.bar {
+    position: absolute;
+    bottom: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 2px;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .bar {
+    transform: scaleX(1);
+}
+
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 8rem 0;
+    }
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

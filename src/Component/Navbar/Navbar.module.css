@@ -1,0 +1,120 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background-color: color-mix(in oklab, white 70%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, #eae3df 50%, transparent);
+}
+
+.navbar {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.brandIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    transition: transform 0.3s ease;
+}
+
+.brand:hover .brandIcon {
+    transform: rotate(12deg);
+}
+
+.brandText {
+    font-family: "playfair Display", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #190f0b;
+}
+
+.highlight {
+    color: #c23f00;
+}
+
+.menu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.menu a {
+    position: relative;
+    color: color-mix(in oklab, #190f0b 80%, transparent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.25rem;
+    height: 2px;
+    width: 0;
+    background-color: #c23f00;
+    transition: width 0.3s ease;
+}
+
+.menu a:hover {
+    color: #c23f00;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+.cta {
+    display: none;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.cta:hover {
+    transform: scale(1.05);
+}
+
+@media (min-width: 640px) {
+    .cta {
+        display: inline-flex;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu {
+        display: flex;
+    }
+}

@@ -1,0 +1,195 @@
+.container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 4rem;
+}
+
+.bgImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlayGradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(25, 15, 11, 0.85), rgba(194, 63, 0, 0.55));
+}
+
+.overlayDark {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, #190f0b 40%, transparent);
+}
+
+.parent {
+    position: relative;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+.content {
+    color: white;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.357rem 1rem;
+    border: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 50px;
+}
+
+.badgeDot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50px;
+    background: #f16a00;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.title {
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    line-height: 1.05;
+    font-weight: 700;
+    color: white;
+}
+
+.dot {
+    color: #f16a00;
+}
+
+.italic {
+    font-family: "playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+}
+
+.subtitle {
+    margin-top: 1.5rem;
+    max-width: 36rem;
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+.actions {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    box-shadow: 0 20px 60px -20px color-mix(in oklab, #c23f00 35%, transparent);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.btnPrimary:hover {
+    transform: scale(1.05);
+}
+
+.btnPrimary .arrow {
+    transition: transform 0.2s ease;
+}
+
+.btnPrimary:hover .arrow {
+    transform: translateX(4px);
+}
+
+.btnGhost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btnGhost:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.stats {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 28rem;
+}
+
+.statNum {
+    font-family: "playfair Display", Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #f16a00;
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .title {
+        font-size: 3.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .parent {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    .content {
+        grid-column: span 8;
+    }
+
+    .title {
+        font-size: 4.5rem;
+    }
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,152 @@
+.container {
+    padding: 6rem 0;
+    background: #faf4ef;
+}
+
+.parent {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: 4rem;
+    align-items: center;
+}
+
+.visual {
+    position: relative;
+}
+
+.tile {
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    box-shadow: 0 20px 60px -20px color-mix(in oklab, #c23f00 35%, transparent);
+}
+
+.tileIcon {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.tileIcon svg {
+    width: 12rem;
+    height: 12rem;
+    color: rgba(255,255,255,0.2);
+    animation: float 6s ease-in-out infinite;
+}
+
+.tileText {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    color: white;
+}
+
+.tileNum {
+    font-family: "playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 3.75rem;
+}
+
+.tileLabel {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.8);
+    margin-top: 0.5rem;
+}
+
+.badge {
+    display: none;
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1.5rem;
+    border: 1px solid #eae3df;
+    max-width: 18rem;
+    box-shadow: 0 8px 30px -12px color-mix(in oklab, #190f0b 18%, transparent);
+}
+
+.badgeNum {
+    font-family: "playfair Display", Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #c23f00;
+}
+
+.badgeText {
+    font-size: 0.875rem;
+    color: #1e130f;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #c23f00;
+    font-weight: 600s;
+}
+
+.title {
+    margin-top: 1rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #190f0b;
+    line-height: 1.1;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.p {
+    margin-top: 1.5rem;
+    color: #1e130f;
+    line-height: 1.6;
+}
+
+.p + .p {
+    margin-top: 1rem;
+}
+
+.p strong {
+    color: #190f0b;
+}
+
+@media (min-width: 768px) {
+    .badge {
+        display: block;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 8rem 0;
+    }
+
+    .parent {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}

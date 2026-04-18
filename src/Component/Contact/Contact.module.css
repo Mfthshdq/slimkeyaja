@@ -1,0 +1,143 @@
+.container {
+    padding: 6rem 0;
+    background-color: white;
+}
+
+.parent {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.card {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    overflow: hidden;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    box-shadow: 0 20px 60px -20px color-mix(in oklab, #c23f00 35%, transparent);
+}
+
+.glow {
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.1);
+    filter: blur(60px);
+}
+
+.inner {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+}
+
+.title {
+    margin-top: 1rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.lead {
+    margin-top: 1rem;
+    color: rgba(255,255,255,0.85);
+}
+
+.cta {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    background-color: white;
+    color: #c23f00;
+    text-decoration: none;
+    transition: transform 0.2s ease;    
+}
+
+.cta:hover {
+    transform: scale(1.05);
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background-color 0.2s ease;
+}
+
+.item:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+.itemIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.itemLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+}
+
+.itemValue {
+    font-weight: 600;
+    margin: 0.25rem;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 8rem 0;
+    }
+
+    .card {
+        padding: 4rem;
+    }
+
+    .inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}

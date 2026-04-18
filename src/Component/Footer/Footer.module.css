@@ -1,0 +1,63 @@
+.container {
+    background-color: #190f0b;
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 0;
+}
+
+.parent {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brandIcon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+}
+
+.brandText {
+    font-family: "playfair Display", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.highlight {
+    color: #f16a00;
+}
+
+.copy {
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.copy strong {
+    color: white;
+    font-weight: 600;
+}
+
+.tag {
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .parent {
+        flex-direction: row;
+    }
+}
