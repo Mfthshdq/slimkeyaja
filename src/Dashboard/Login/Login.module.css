@@ -1,0 +1,154 @@
+.authShell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+     background: linear-gradient(135deg, #190f0b, color-mix(in oklab, #c23f00 35%, #190f0b));
+}
+
+@media (min-width: 1024px) {
+    .authShell {
+        grid-template-columns: 1.1fr 1fr;
+    }
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: #190f0b;
+}
+
+.brandIcon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #c23f00, #f16a00);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px -20px color-mix(in oklab, #c23f00 35%, transparent);
+}
+
+.brandText {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+}
+
+.left {
+    display: none;
+    position: relative;
+    padding: 3rem;
+    color: white;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .left {
+        display: flex;
+    }
+}
+
+.left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, color-mix(in oklab, #f16a00 40%, transparent), transparent 60%);
+    pointer-events: none;
+}
+
+.authHeroContent {
+    position: relative;
+    max-width: 32rem;
+    margin: auto 0;
+}
+
+.authHeroTitle {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 1.5rem 0 1rem;
+    color: white;
+}
+
+.authHeroDot {
+    color: #f16a00;
+}
+
+.authHeroText {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.authHeroFooter {
+    position: relative;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.right {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.judul {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 0.1cm;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.place {
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    width: 250px;
+    border: 1px solid black;
+    border-color: black 0.5;
+}
+
+.btn {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    background-color: #f16a00;
+    border-radius: 5px;
+    height: 32px;
+    width: 258px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #df6305;
+}

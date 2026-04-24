@@ -1,0 +1,141 @@
+.container {
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.header {
+  color: #c23f00;
+  border-bottom: 3px solid #c23f00;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.subTotal {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subTotal h3 {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.subTotal p {
+  margin: 10px 0 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.filterContainer {
+  display: flex;
+  gap: 20px;
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filterGroup select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.filterGroup label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.formSection {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 5px solid #c23f00;
+  margin-bottom: 3rem;
+}
+
+.inputGroup {
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btnSubmit {
+  background-color: #c23f00;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s background-color ease;
+}
+
+.btnSubmit:hover {
+  background-color: #a13400;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th {
+  background-color: #c23f00;
+  color: white;
+  text-align: left;
+  padding: 1rem;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.btnCancel {
+  background-color: #ccc;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s background-color ease;
+}
+
+.btnCancel:hover {
+  background-color: #bbb;
+}
+
+.btn {
+  display: flex;
+  gap: 16px;
+}

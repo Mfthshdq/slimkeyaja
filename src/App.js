@@ -1,29 +1,23 @@
-
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import NavbarPage from './Pages/NavbarPage';
-import HeroPage from './Pages/HeroPage';
-import AboutPage from './Pages/AboutPage';
-import ServicePage from './Pages/ServicePage';
-import WhyChooseUsPage from './Pages/WhyChooseUsPage';
-import ContactPage from './Pages/ContactPage';
-import Footer from './Component/Footer/Footer';
+import LandingPage from './Pages/LandingPage';
+import Admin from './Dashboard/Admin/Admin';
+import Karyawan from './Dashboard/Karyawan/Karyawan';
+import Login from './Dashboard/Login/Login';
+import ProtectedRoute from './Component/ProtectedRoute';
 
 function App() {
   return (
     <div>
-      <NavbarPage />
-      <HeroPage />
-      <ServicePage />
-      <WhyChooseUsPage />
-      <AboutPage />
-      <ContactPage />
-      <Footer />
-
       <Routes>
-        <Route path='/Admin' element={<HeroPage />}></Route>
-        <Route path='/Karyawan' element={<AboutPage />}></Route>
-        <Route path='/Login' element={<AboutPage />}></Route>
+        <Route path="/admin" element={
+          <ProtectedRoute allowedRole="admin">
+            <Admin />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/' element={<LandingPage />}></Route>
+        <Route path='/karyawan' element={<Karyawan />}></Route>
+        <Route path='/login' element={<Login />}></Route>
       </Routes>
     </div>
   );
