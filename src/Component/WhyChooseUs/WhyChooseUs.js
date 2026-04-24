@@ -4,7 +4,7 @@ import style from "./WhyChooseUs.module.css"
 function WhyChooseUs() {
     const items = [
         { icon: Zap, title: "Cepat & Responsif", desc: "Datang on-the-spot pengerjaan rata-rata kurang dari 30 menit." },
-        { icon: Wrench, title: "Teknisi Berpengalaman", desc: "Lebih dari 10 tahun menangani ribuan kasus kunci." },
+        { icon: Wrench, title: "Teknisi Kunci Berpengalaman", desc: "Lebih dari 10 tahun menangani ribuan kasus kunci." },
         { icon: Wallet, title: "Harga Terjangkau", desc: "Tarif transparan tanpa biaya tersembunyi, ramah di kantong." },
         { icon: Clock, title: "Layanan 24 Jam", desc: "Siap membantu kapan pun Anda butuh, termasuk hari libur." },
     ];
