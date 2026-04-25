@@ -22,7 +22,7 @@ function WhyChooseUs() {
                             Dipercaya ribuan pelanggan{" "}
                             <span className={style.italic}>setiap tahunnya.</span>
                         </h2>
-                    </div>
+                    </div>  
                     <p className={style.lead}>
                         Kami menggabungkan keahlian tradisional dengan teknologi modern untuk
                         memberikan solusi kunci yang aman, presisi, dan tahan lama.
