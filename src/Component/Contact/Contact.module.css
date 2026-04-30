@@ -62,6 +62,11 @@
     color: rgba(255,255,255,0.85);
 }
 
+.ctaGroup {
+    display: flex;
+    flex-direction: column;
+}
+
 .cta {
     margin-top: 2rem;
     display: inline-flex;

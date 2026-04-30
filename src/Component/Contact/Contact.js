@@ -16,15 +16,26 @@ function Contact() {
                             <p className={style.lead}>
                                 Hubungi tim SlimKey kapan saja - kami siap melayani 24 jam, setiap hari.
                             </p>
-                            <a
-                                href="https://wa.me/6285353721837"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={style.cta}
-                            >
-                                <MessageCircle style={{ width: "1.25rem", height: "1.25rem" }} />
-                                Chat WhatsApp Sekarang
-                            </a>
+                            <div className={style.ctaGroup}>
+                                <a
+                                    href="https://wa.me/6285353721837"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={style.cta}
+                                >
+                                    <MessageCircle style={{ width: "1.25rem", height: "1.25rem" }} />
+                                    Chat WhatsApp Sekarang
+                                </a>
+                                <a
+                                    href="https://maps.app.goo.gl/QaxyBM5hqqGXiDAJ6"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={style.cta}
+                                >
+                                    <MapPin style={{ width: "1.25rem", height: "1.25rem" }} />
+                                    Datangi Lokasi Sekarang
+                                </a>
+                            </div>
                         </div>
                         <ul className={style.list}>
                             <li className={style.item}>
