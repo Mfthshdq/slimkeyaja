@@ -15,8 +15,12 @@ function App() {
             <Admin />
           </ProtectedRoute>
         }></Route>
+        <Route path="/karyawan" element={
+          <ProtectedRoute allowedRole="karyawan">
+            <Karyawan />
+          </ProtectedRoute>
+        }></Route>
         <Route path='/' element={<LandingPage />}></Route>
-        <Route path='/karyawan' element={<Karyawan />}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
     </div>
