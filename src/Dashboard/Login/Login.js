@@ -12,9 +12,12 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        localStorage.removeItem('role');
+        localStorage.removeItem('token');
+
         try {
             const res = await axios.post(
-                "http://localhost:8000/login",
+                "https://backend.slimkey.my.id/login",
                 { username, password }
             );
 

@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import style from "./Admin.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Admin() {
     const [sales, setSales] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
     const [formData, setFormData] = useState({ service: "", price: "", date: "" });
     const [isEditing, setIsEditing] = useState(null);
+    const navigate = useNavigate();
     const [filter, setFilter] = useState({
         month: new Date().getMonth() + 1,
         year: new Date().getFullYear()
@@ -14,7 +16,7 @@ function Admin() {
     const fetchSales = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:8000/api/sales?month=${filter.month}&year=${filter.year}`, {
+            const response = await fetch(`https://backend.slimkey.my.id/api/sales?month=${filter.month}&year=${filter.year}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -34,7 +36,7 @@ function Admin() {
         if (window.confirm("Yakin ingin menghapus data ini?")) {
             try {
                 const token = localStorage.getItem('token');
-                await fetch(`http://localhost:8000/api/sales/${id}`, {
+                await fetch(`https://backend.slimkey.my.id/api/sales/${id}`, {
                     method: "DELETE",
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -59,8 +61,8 @@ function Admin() {
         e.preventDefault();
         const token = localStorage.getItem('token');
         const url = isEditing
-            ? `http://localhost:8000/api/sales/${isEditing}`
-            : "http://localhost:8000/api/sales";
+            ? `https://backend.slimkey.my.id/api/sales/${isEditing}`
+            : "https://backend.slimkey.my.id/api/sales";
 
         const method = isEditing ? "PUT" : "POST";
 
@@ -80,6 +82,12 @@ function Admin() {
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('role');
+        localStorage.removeItem('token');
+        navigate('/login');
     };
 
     return (
@@ -173,6 +181,9 @@ function Admin() {
                                 Batal
                             </button>
                         )}
+                        <button onClick={handleLogout} className={style.btnLogout}>
+                            Logout
+                        </button>
                     </div>
                 </form>
             </section>

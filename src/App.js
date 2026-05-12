@@ -10,18 +10,23 @@ function App() {
   return (
     <div>
       <Routes>
+
         <Route path="/admin" element={
           <ProtectedRoute allowedRole="admin">
             <Admin />
           </ProtectedRoute>
         }></Route>
+
         <Route path="/karyawan" element={
           <ProtectedRoute allowedRole="karyawan">
             <Karyawan />
           </ProtectedRoute>
         }></Route>
+
         <Route path='/' element={<LandingPage />}></Route>
+
         <Route path='/login' element={<Login />}></Route>
+        
       </Routes>
     </div>
   );

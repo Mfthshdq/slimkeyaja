@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import style from "./Karyawan.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Karyawan() {
     const [expenses, setExpenses] = useState([]);
     const [totalBulanIni, setTotalBulanIni] = useState(0);
     const [isEditing, setIsEditing] = useState(null);
+    const navigate = useNavigate();
     const [filter, setFilter] = useState({
         month: new Date().getMonth() + 1,
         year: new Date().getFullYear()
@@ -19,7 +21,7 @@ function Karyawan() {
     const fetchExpenses = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch("http://localhost:8000/api/expenses", {
+            const response = await fetch("https://backend.slimkey.my.id/api/expenses", {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -54,8 +56,8 @@ function Karyawan() {
         e.preventDefault();
         const token = localStorage.getItem('token');
         const url = isEditing
-            ? `http://localhost:8000/api/expenses/${isEditing}`
-            : "http://localhost:8000/api/expenses";
+            ? `https://backend.slimkey.my.id/api/expenses/${isEditing}`
+            : "https://backend.slimkey.my.id/api/expenses";
         const method = isEditing ? "PUT" : "POST";
 
         try {
@@ -77,6 +79,13 @@ function Karyawan() {
             console.error(err);
         }
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem('role');
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
 
     return (
         <div className={style.container}>
@@ -158,15 +167,20 @@ function Karyawan() {
                         />
                     </div>
 
-                    <button type="submit" className={style.btnSubmit}>
-                        {isEditing ? "Perbarui" : "Simpan"}
-                    </button>
-
-                    {isEditing && (
-                        <button type="button" onClick={cancelEdit} style={{ marginLeft: '10px', background: '#ccc', border: 'none', padding: '10px', borderRadius: '5px' }}>
-                            Batal
+                    <div className={style.btn}>
+                        <button type="submit" className={style.btnSubmit}>
+                            {isEditing ? "Perbarui" : "Simpan"}
                         </button>
-                    )}
+
+                        {isEditing && (
+                            <button type="button" onClick={cancelEdit} className={style.btnCancel}>
+                                Batal
+                            </button>
+                        )}
+                        <button onClick={handleLogout} className={style.btnLogout}>
+                            Logout
+                        </button>
+                    </div>
                 </form>
             </section>
 
