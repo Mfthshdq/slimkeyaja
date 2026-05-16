@@ -95,7 +95,7 @@ function Login() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
-                                style={{ width: '100%', paddingRight: '40px' }}
+                                style={{ width: '97%' }}
                             />
                             <button
                                 type="button"

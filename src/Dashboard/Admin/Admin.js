@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import style from "./Admin.module.css";
 import { useNavigate } from "react-router-dom";
+import Karyawan from "../Karyawan/Karyawan";
 
 function Admin() {
     const [sales, setSales] = useState([]);
@@ -8,10 +9,21 @@ function Admin() {
     const [formData, setFormData] = useState({ service: "", price: "", date: "" });
     const [isEditing, setIsEditing] = useState(null);
     const navigate = useNavigate();
+
+    // Filter untuk data Bulanan (dikirim ke backend)
     const [filter, setFilter] = useState({
         month: new Date().getMonth() + 1,
         year: new Date().getFullYear()
     });
+
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+    // State untuk rekap Harian (kotak atas)
+    const [filterDate, setFilterDate] = useState(todayString);
+
+    // --- STATE BARU: Filter khusus untuk Tabel ---
+    const [tableDateFilter, setTableDateFilter] = useState("");
 
     const fetchSales = useCallback(async () => {
         try {
@@ -20,6 +32,7 @@ function Admin() {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
+
             if (Array.isArray(data)) {
                 setSales(data);
                 setSubtotal(data?.subtotal_dipilih || 0);
@@ -28,7 +41,7 @@ function Admin() {
                 setSubtotal(0);
             }
         } catch (err) { console.error(err); }
-    }, [filter]);
+    }, [filter.month, filter.year]);
 
     useEffect(() => { fetchSales(); }, [fetchSales]);
 
@@ -90,24 +103,50 @@ function Admin() {
         navigate('/login');
     };
 
+    const isSameDay = (dbDateStr, selectedDateStr) => {
+        const dbDate = new Date(dbDateStr);
+        const year = dbDate.getFullYear();
+        const month = String(dbDate.getMonth() + 1).padStart(2, '0');
+        const day = String(dbDate.getDate()).padStart(2, '0');
+        const formattedDbDate = `${year}-${month}-${day}`;
+        return formattedDbDate === selectedDateStr;
+    };
+
+    const pendapatanHarian = sales
+        .filter(item => isSameDay(item.date, filterDate))
+        .reduce((sum, item) => sum + Number(item.price), 0);
+
+    // --- LOGIKA FILTER TABEL ---
+    const filteredSales = tableDateFilter
+        ? sales.filter(item => isSameDay(item.date, tableDateFilter))
+        : sales;
+
     return (
         <div className={style.container}>
             <h1 className={style.header}>SlimKey Admin Dashboard</h1>
+            <h1 className={style.subHeader}>Form Penjualan</h1>
 
-            <div className={style.subTotal}>
-                <h3>Subtotal Penjualan (Bulan Ini)</h3>
-                <p>
-                    Rp {Number(subtotal).toLocaleString('id-ID')}
-                </p>
+            <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                <div className={style.subTotal} style={{ flex: 1, minWidth: '250px' }}>
+                    <h3>Pendapatan Harian</h3>
+                    <input
+                        type="date"
+                        value={filterDate}
+                        onChange={(e) => setFilterDate(e.target.value)}
+                        style={{ marginBottom: '10px', padding: '5px' }}
+                    />
+                    <p>Rp {Number(pendapatanHarian).toLocaleString('id-ID')}</p>
+                </div>
+                <div className={style.subTotal} style={{ flex: 1, minWidth: '250px' }}>
+                    <h3>Subtotal Penjualan (Bulan Ini)</h3>
+                    <p>Rp {Number(subtotal).toLocaleString('id-ID')}</p>
+                </div>
             </div>
 
             <div className={style.filterContainer}>
                 <div className={style.filterGroup}>
                     <label>Pilih Bulan: </label>
-                    <select
-                        value={filter.month}
-                        onChange={(e) => setFilter({ ...filter, month: e.target.value })}
-                    >
+                    <select value={filter.month} onChange={(e) => setFilter({ ...filter, month: e.target.value })}>
                         <option value="1">Januari</option>
                         <option value="2">Februari</option>
                         <option value="3">Maret</option>
@@ -122,13 +161,9 @@ function Admin() {
                         <option value="12">Desember</option>
                     </select>
                 </div>
-
                 <div className={style.filterGroup}>
                     <label>Tahun: </label>
-                    <select
-                        value={filter.year}
-                        onChange={(e) => setFilter({ ...filter, year: e.target.value })}
-                    >
+                    <select value={filter.year} onChange={(e) => setFilter({ ...filter, year: e.target.value })}>
                         <option value="2026">2026</option>
                         <option value="2027">2027</option>
                         <option value="2028">2028</option>
@@ -139,13 +174,14 @@ function Admin() {
             <section className={style.formSection}>
                 <h2>{isEditing ? "Edit Data Penjualan" : "Buat Data Baru"}</h2>
                 <form onSubmit={handleSubmit}>
+                    {/* Input form sama seperti sebelumnya */}
                     <div className={style.inputGroup}>
                         <label>Layanan Kunci</label>
                         <input
                             type="text"
+                            placeholder="contoh : Duplikat Kunci Motor"
                             value={formData.service}
                             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                            placeholder="Contoh: Buka Pintu Mobil"
                             required
                         />
                     </div>
@@ -153,9 +189,9 @@ function Admin() {
                         <label>Harga (IDR)</label>
                         <input
                             type="number"
+                            placeholder="contoh : 50000"
                             value={formData.price}
                             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                            placeholder="contoh: 200000"
                             required
                         />
                     </div>
@@ -169,27 +205,44 @@ function Admin() {
                         />
                     </div>
                     <div className={style.btn}>
-                        <button type="submit" className={style.btnSubmit}>
-                            {isEditing ? "Update Data" : "Simpan Transaksi"}
-                        </button>
-                        {isEditing && (
+                        <button type="submit" className={style.btnSubmit}>{isEditing ? "Update Data" : "Simpan Transaksi"}</button>
+                        {
+                            isEditing &&
                             <button
                                 type="button"
                                 className={style.btnCancel}
-                                onClick={() => { setIsEditing(null); setFormData({ service: "", price: "", date: "" }) }}
-                            >
-                                Batal
-                            </button>
-                        )}
-                        <button onClick={handleLogout} className={style.btnLogout}>
-                            Logout
-                        </button>
+                                onClick={() => {
+                                    setIsEditing(null);
+                                    setFormData({ service: "", price: "", date: "" })
+                                }}>
+                                Batal</button>
+                        }
+                        <button onClick={handleLogout} className={style.btnLogout}>Logout</button>
                     </div>
                 </form>
             </section>
 
             <section>
-                <h2>History Penjualan</h2>
+                {/* --- HEADER TABEL DENGAN FILTER --- */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', marginBottom: '15px' }}>
+                    <h2>History Penjualan</h2>
+                    <div>
+                        <label style={{ marginRight: '10px' }}>Filter Tabel per Tanggal: </label>
+                        <input
+                            type="date"
+                            value={tableDateFilter}
+                            onChange={(e) => setTableDateFilter(e.target.value)}
+                            style={{ padding: '5px' }}
+                        />
+                        <button
+                            onClick={() => setTableDateFilter("")}
+                            style={{ marginLeft: '10px', padding: '5px 10px', cursor: 'pointer' }}
+                        >
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
                 <table className={style.table}>
                     <thead>
                         <tr>
@@ -201,19 +254,16 @@ function Admin() {
                         </tr>
                     </thead>
                     <tbody>
-                        {sales.length > 0 ? (
-                            sales.map((item) => (
+                        {/* Ganti map ke filteredSales */}
+                        {filteredSales.length > 0 ? (
+                            filteredSales.map((item) => (
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
                                     <td>{item.service}</td>
                                     <td>Rp {Number(item.price).toLocaleString('id-ID')}</td>
                                     <td>
                                         {new Date(item.date).toLocaleString('id-ID', {
-                                            day: 'numeric',
-                                            month: 'short',
-                                            year: 'numeric',
-                                            hour: '2-digit',
-                                            minute: '2-digit'
+                                            day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
                                         })}
                                     </td>
                                     <td>
@@ -223,11 +273,13 @@ function Admin() {
                                 </tr>
                             ))
                         ) : (
-                            <tr><td colSpan="5" style={{ textAlign: 'center' }}>Belum ada data.</td></tr>
+                            <tr><td colSpan="5" style={{ textAlign: 'center' }}>Tidak ada data pada tanggal tersebut.</td></tr>
                         )}
                     </tbody>
                 </table>
             </section>
+
+            <Karyawan />
         </div>
     );
 }
