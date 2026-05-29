@@ -11,11 +11,13 @@ function App() {
     <div>
       <Routes>
 
-        <Route path="/admin" element={
+        {/* <Route path="/admin" element={
           <ProtectedRoute allowedRole="admin">
             <Admin />
           </ProtectedRoute>
-        }></Route>
+        }></Route> */}
+
+        <Route path='/admin' element={<Admin />}></Route>
 
         <Route path="/karyawan" element={
           <ProtectedRoute allowedRole="karyawan">
